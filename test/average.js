@@ -11,7 +11,7 @@ describe('#average', () => {
   // 測試有沒有回傳 NaN
   it('should return NaN when array is empty', done => {
     const avg = average([])
-    isNaN(avg).should.be.true
+    isNaN(avg).should.equal(true)
     done()
   })
 })
