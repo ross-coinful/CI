@@ -1,6 +1,30 @@
-# circle.yml
-machine: # 虛擬機的環境
-  node:
-    version: 6.9.2 #把剛剛得到的node version填到這裡
+version: 2
+
+jobs:
+  install:
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node:9-stretch-browsers
+    steps:
+      - checkout
+      - run: yarn install
   test:
-    - npm test  #每一個deploy到github上的commit都會執行npm test
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node:9-stretch-browsers
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - install
+      - test:
+          requires:
+            - install
