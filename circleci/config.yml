@@ -6,7 +6,7 @@ jobs:
       only:
         - master
     docker:
-      - image: circleci/node:9-stretch-browsers
+      - image: node:9.4.0
     steps:
       - checkout
       - run: yarn install
@@ -15,7 +15,7 @@ jobs:
       only:
         - master
     docker:
-      - image: circleci/node:9-stretch-browsers
+      - image: node:9.4.0
     steps:
       - checkout
       - run: yarn install
